@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block page_styles %}
+    <style media="screen">
+        .shortcutsSorting { margin:0; display:block; padding:10px; min-height:34px; background:#EEE; }
+        .shortcutsSorting li { display:block; clear:both; border:1px solid #CCC; margin-bottom:4px; padding:6px 6px; cursor:move; background:#FFF; overflow:hidden; }
+        li.dropPlaceHolder { border-color:#666; background:rgba(0, 0, 0, .2); height:16px; }
+        .shortcutsSorting li span { float:left; margin-right:5px; margin-top:-1px; }
+        .shortcutsSorting li .delShortcut { float:right; font-size:12px; color:#00F; display:none; cursor:pointer; }
+        .shortcutsSorting li .delShortcut:hover { text-decoration:underline; color:#66F; }
+        .shortcutsSorting li:hover .delShortcut { display:block; }
+        .addNewShortcutFormSpace { position:relative; z-index:70; display:none; }
+    </style>
+{% endblock %}
+
+{% block page_scripts %}
+    <script type="text/javascript" src="/static/js/tasks.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="adminBlock">
+    <div class="row collapse">
+        <div class="medium-24 column">
+            <h2 class="setting-header">Tasks</h2>
+        </div>
+    </div>
+
+    <!-- div class="addNewShortcutFormSpace">
+        <div class="addNewShortcut">
+            <input type="text" name="newToDoLabel" class="labelInput" alt="To-Do Label">
+            <input type="hidden" name="newToDoQuad" value="0" />
+        </div>
+    </div -->
+
+    <div class="row collapse">
+        <div class="medium-11 columns">
+            <div class="row">
+                <div class="column medium-19">
+                    <h3 style="color:#F00;">Urgent &amp; Important</h3>
+                </div>
+                <div class="column medium-5" id="addNewQuad0">
+                    <!-- a href="#" class="showAddFormButton add-button right" data-showQuad="0"><span class="icon-plus"></span></a -->
+                    <div class="linkStyle showAddFormButton right" data-showQuad="0">add new</div>
+                </div>
+            </div>
+            <ul id="quad-0" class="shortcutsSorting" data-quad="0">
+                {% for todoItem in quad0Items %}
+                <li data-toDoId="{{ todoItem.id }}"><span></span><span class="todoLabel">{{ todoItem.name }}</span><div class="delShortcut">delete</div></li>
+                {% endfor %}
+
+            </ul>
+        </div>
+
+        <div class="medium-11 medium-offset-2 columns">
+            <div class="row">
+                <div class="column medium-19">
+                    <h3 style="color:#F80;">Urgent</h3>
+                </div>
+                <div class="column medium-5" id="addNewQuad1">
+                    <!-- a href="#" class="showAddFormButton add-button right" data-showQuad="1"><span class="icon-plus"></span></a -->
+                    <div class="linkStyle showAddFormButton right" data-showQuad="1">add new</div>
+                </div>
+            </div>
+            <ul id="quad-1" class="shortcutsSorting" data-quad="1">
+                {% for todoItem in quad1Items %}
+                <li data-toDoId="{{ todoItem.id }}"><span></span><span class="todoLabel">{{ todoItem.name }}</span><div class="delShortcut">delete</div></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="row collapse">
+        <div class="medium-11 columns">
+            <div class="row">
+                <div class="column medium-19">
+                    <h3 style="color:#00F;">Important</h3>
+                </div>
+                <div class="column medium-5" id="addNewQuad2">
+                    <!-- a href="#" class="showAddFormButton add-button right" data-showQuad="2"><span class="icon-plus"></span></a -->
+                    <div class="linkStyle showAddFormButton right" data-showQuad="2">add new</div>
+                </div>
+            </div>
+            <ul id="quad-2" class="shortcutsSorting" data-quad="2">
+                {% for todoItem in quad2Items %}
+                <li data-toDoId="{{ todoItem.id }}"><span></span><span class="todoLabel">{{ todoItem.name }}</span><div class="delShortcut">delete</div></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="medium-11 medium-offset-2 columns">
+            <div class="row">
+                <div class="column medium-19">
+                    <h3 style="color:#0C0;">Other</h3>
+                </div>
+                <div class="column medium-5" id="addNewQuad3">
+                    <!-- a href="#" class="showAddFormButton add-button right" data-showQuad="3"><span class="icon-plus"></span></a -->
+                    <div class="linkStyle showAddFormButton right" data-showQuad="3">add new</div>
+                </div>
+            </div>
+            <ul id="quad-3" class="shortcutsSorting" data-quad="3">
+                {% for todoItem in quad3Items %}
+                <li data-toDoId="{{ todoItem.id }}"><span></span><span class="todoLabel">{{ todoItem.name }}</span><div class="delShortcut">delete</div></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
